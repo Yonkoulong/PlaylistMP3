@@ -1,0 +1,246 @@
+:root {
+    --background-color: hotpink;
+    --text-color: #f8486f;
+    --icon-color: #f8355f;
+    --text-notActive: #fa9db2;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Haas Grit Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: none solid rgb(158, 158, 167);
+    text-align: center;
+    word-spacing: 0px;
+    background-color: var(--background-color);
+    
+}
+
+.player {
+    margin: 40px auto;
+    background-color: #fff;
+    width: 375px;
+    height: 700px;
+    text-align: center;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    box-shadow: 0 0 10px rgb(247, 198, 222), 0 0 40px rgb(252, 175, 213), 0 0 80px rgb(177, 95, 136);
+}
+
+.dashboard {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    text-align:center;
+    justify-content: space-between;
+    padding: 40px;
+    color: var(--text-color);
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.title-name {
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cd {
+    background-color: #fcaebe;
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    position: relative;
+    margin: auto;
+}
+.cd-thumb {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.time {
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--text-notActive);
+}
+
+#curtime {
+    margin-right: 4px;
+}
+
+#durtime {
+    margin-left: 4px;
+}
+
+#volume {
+    margin-left: 4px;
+}
+
+.progress {
+    width: 65%;
+    -webkit-appearance: none;
+    height: 6px;
+    /* background-color: #d3d3d3; */
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+.progress::-webkit-slider-thumb {
+    -webkit-apprarance: none;
+    appearance: none;
+    width: 12px;
+    height: 6px;
+    background-color: var(--text-notActive);
+    cursor: pointer;
+}
+
+.progress:hover {
+    cursor: pointer;
+    color: var(--icon-color)
+}
+
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 35px;
+}
+
+.control .btn {
+    font-size: 15px;
+    color: var(--text-notActive);
+}
+
+.control .btn i {
+    transition: all 0.3s ease;
+}
+
+.control .btn:hover i {
+    transform: scale(1.5);
+    cursor: pointer;
+    color: var(--icon-color);
+}
+
+.control .btn .icon-pause {
+    display: none;
+}
+
+.control .btn .icon-play {
+   
+    line-height: 50px;
+}
+
+.control .btn:hover .icon-play {
+    color: #fff;
+}
+
+.control .btn-toggle-play {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--text-color)
+}
+
+.container {
+    position: relative;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    height: 102px;
+    width: 16px;
+    background-color: var(--icon-color);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: flex;
+    margin-left: 18px;
+
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    height: 102px;
+    width: 16px;
+    background-color: var(--icon-color);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin: -110px 0 0 154px;
+}
+
+.playlist {
+    margin-top: 50px;
+    max-height: 110px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    position: relative;
+}
+
+.playlist::-webkit-scrollbar { /*chrome, safari and opera */
+    display: none;
+}
+
+.song {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.song .thumb {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    line-height: 45px;
+}
+
+.song .body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 10px;
+}
+
+.song .body .title-music {
+    font-size: 14px;
+    color: var(--text-color);
+    line-height: 1.5rem;
+    max-height: 3rem;
+    overflow: hidden;
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.song .body .author {
+    font-size: 12px;
+    color: var(--text-notActive);
+    text-align: left;
+}

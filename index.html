@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="player">
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Header -->
+            <header>
+                <div class="header-back">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="header-menu">
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </header>
+
+            <!-- Title Music-->
+            <div class="title">
+                <div class="title-name">
+                    <span>Justin Bieber Ft.Never Say</span>
+                </div>
+            </div>
+
+            <!-- CD -->
+            <div class="cd">
+                <div class="cd-thumb"
+                    style="background-image: url(./assets/img/noiNayCoAnh.webp); width: 200px; height: 200px">
+                </div>
+            </div>
+
+            <!-- Control -->
+            <div class="control">
+                <div class="btn btn-repeat">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <div class="btn btn-prev">
+                    <i class="fas fa-step-backward"></i>
+                </div>
+                <div class="btn btn-toggle-play">
+                    <i class="fas fa-pause icon-pause"></i>
+                    <i class="fas fa-play icon-play"></i>
+                </div>
+                <div class="btn btn-next">
+                    <i class="fas fa-step-forward"></i>
+                </div>
+                <div class="btn btn-random">
+                    <i class="fas fa-random"></i>
+                </div>
+            </div>
+
+            <div class="time">
+                <span id="curtime">00:00</span>
+                <input type="range" class="progress" id="progress" placeholder="" value="0" step="1" min="0" max="100">
+                <span id="durtime">00:00</span>
+                <span><i id="volume" class="fas fa-volume-up"></i></span>
+            </div>
+
+            <audio src="" id="audio"></audio>
+        </div>
+
+        <!-- PlayList -->
+        <div class="container">
+            <div class="playlist">
+                <div class="song">
+                    <div class="thumb"
+                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
+                    </div>
+                    <div class="body">
+                        <h3 class="title-music">Music name</h3>
+                        <p class="author">Singer / ban</p>
+                    </div>
+                </div>
+                <div class="song">
+                    <div class="thumb"
+                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
+                    </div>
+                    <div class="body">
+                        <h3 class="title-music">Music name</h3>
+                        <p class="author">Singer / ban</p>
+                    </div>
+                </div>
+                <div class="song">
+                    <div class="thumb"
+                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
+                    </div>
+                    <div class="body">
+                        <h3 class="title-music">Music name</h3>
+                        <p class="author">Singer / ban</p>
+                    </div>
+                </div>
+                <div class="song">
+                    <div class="thumb"
+                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
+                    </div>
+                    <div class="body">
+                        <h3 class="title-music">Music name</h3>
+                        <p class="author">Singer / ban</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
