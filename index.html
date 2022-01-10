@@ -19,8 +19,20 @@
                 <div class="header-back">
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <div class="header-menu">
-                    <i class="fas fa-ellipsis-v"></i>
+
+                <div class="header__menu">
+                    <label for="menu-check" class="header-menu-icon">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </label>
+                    <input type="checkbox" hidden name="" class="header__menu-checkbox" id="menu-check">
+                    <div class="header__categoryMusic">
+                        <div class="vietnamese cat">Vietnamese</div>
+                        <div class="english cat">English</div>
+                        <div class="korea cat">Korea</div>
+                        <div class="china cat">China</div>
+                        <div class="love cat">Love</div>
+                    </div>
+                    <label for="menu-check" class="overlay"></label>
                 </div>
             </header>
 
@@ -34,7 +46,7 @@
             <!-- CD -->
             <div class="cd">
                 <div class="cd-thumb"
-                    style="background-image: url(./assets/img/noiNayCoAnh.webp); width: 200px; height: 200px">
+                    style="background-image: url(./assets/img/cadilac3.jpg);">
                 </div>
             </div>
 
@@ -59,8 +71,8 @@
             </div>
 
             <div class="time">
-                <span id="curtime">00:00</span>
                 <input type="range" class="progress" id="progress" placeholder="" value="0" step="1" min="0" max="100">
+                <span id="curtime">00:00</span>/
                 <span id="durtime">00:00</span>
                 <span><i id="volume" class="fas fa-volume-up"></i></span>
             </div>
@@ -69,47 +81,12 @@
         </div>
 
         <!-- PlayList -->
-        <div class="container">
             <div class="playlist">
-                <div class="song">
-                    <div class="thumb"
-                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
-                    </div>
-                    <div class="body">
-                        <h3 class="title-music">Music name</h3>
-                        <p class="author">Singer / ban</p>
-                    </div>
-                </div>
-                <div class="song">
-                    <div class="thumb"
-                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
-                    </div>
-                    <div class="body">
-                        <h3 class="title-music">Music name</h3>
-                        <p class="author">Singer / ban</p>
-                    </div>
-                </div>
-                <div class="song">
-                    <div class="thumb"
-                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
-                    </div>
-                    <div class="body">
-                        <h3 class="title-music">Music name</h3>
-                        <p class="author">Singer / ban</p>
-                    </div>
-                </div>
-                <div class="song">
-                    <div class="thumb"
-                        style="background: url(./assets/img/noiNayCoAnh.webp); width: 40px; height: 45px;">
-                    </div>
-                    <div class="body">
-                        <h3 class="title-music">Music name</h3>
-                        <p class="author">Singer / ban</p>
-                    </div>
-                </div>
+                
             </div>
-        </div>
+
     </div>
+    <script src="music.js"></script>
 </body>
 
 </html>
