@@ -11,12 +11,16 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-const singer = $('.title')
+const singer = $('.title .title-name')
 const cdThumb = $('.cd-thumb')
 const audio = $('#audio')
 const player = $('.player')
 const playBtn = $('.btn-toggle-play')
-const playlist = $$('.playlist');
+const playlist = $$('.playlist')
+const progress = $('#progress')
+const curtime = $('#curtime')
+const durtime = $('#durtime')
+const volume = $('#volume')
 
 const app = {
   currentIndex: 0,
@@ -109,22 +113,64 @@ const app = {
     }
 
     //when song was be played
-    audio.onplay = function() {
+    audio.onplay = function () {
       _this.isPlaying = true
       player.classList.add('playing')
     }
 
     //when song was be paused
-    audio.onpause = function() {
+    audio.onpause = function () {
       _this.isPlaying = false
       player.classList.remove('playing')
     }
+
+    //when song progress running
+    audio.ontimeupdate = function () {
+        if (audio.duration) {
+          const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
+          progress.value = progressPercent
+        }
+    }
+
+    //handle song when skip
+    progress.onchange = function(e) {
+      const seekTime = audio.duration / 100 * e.target.value
+      audio.currentTime = seekTime
+    }
+
+    //song current time
+    audio.addEventListener('timeupdate', function() {
+      var curtime = this.currentTime
+      console.log(curtime)
+      var min = Math.floor(curtime / 60)
+      var sec = Math.floor(curtime % 60)
+      document.getElementById('curtime').innerText = (min<10?'0'+min : min)+ ':' +(sec<10?'0'+sec : sec)
+    })
+
+    //Song duration time
+    audio.onloadedmetadata = function () {
+      duration = audio.duration
+      var min = Math.floor(duration / 60)
+      var sec = Math.floor(duration % 60)
+      document.getElementById('durtime').innerText = (min<10?'0'+ min : min) +':'+ (sec<10?'0'+ sec : sec)
+    }
+
+    //mute and up volume
+    volume.addEventListener('click', function() {
+      if(this.classList.contains('fa-volume-up')) {
+          this.classList.replace('fa-volume-up', 'fa-volume-mute')
+          audio.volume = 0
+      } else {
+          this.classList.replace('fa-volume-mute', 'fa-volume-up')
+          audio.volume = 1
+      }
+    })
   },
+  
   loadcurrentSong: function() {
-      singer.textContent = this.currentSong.name
+      singer.textContent= this.currentSong.name
       cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`
       audio.src = this.currentSong.path
-
   },
   start: function () {
     //define the properties for object
