@@ -186,6 +186,10 @@ header {
     color: var(--text-notActive);
 }
 
+.control .btn.active {
+    color: var(--icon-color);
+}
+
 .control .btn i {
     transition: all 0.3s ease;
 }
@@ -313,12 +317,26 @@ header {
 .song {
     display: flex;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     border-radius: 5px;
-    padding: 8px 16px;
+    margin:8px 16px;
+    padding: 4px 8px;
     box-shadow: 0 2px 3px rgb(0 0 0 / 10%);
     cursor: pointer;
+    background: #ecdddd;
 }
+
+.song.active {
+    background-color: var(--text-color)
+}
+
+.song.active .option,
+.song.active .singer,
+.song.active .title-music {
+    color: #fff !important;
+}
+
+
 
 .song .thumb {
     background-repeat: no-repeat;
@@ -336,7 +354,7 @@ header {
 }
 
 .song .body .title-music {
-    font-size: 14px;
+    font-size: 16px;
     text-align: left;
     color: var(--text-color);
     line-height: 1.5rem;
