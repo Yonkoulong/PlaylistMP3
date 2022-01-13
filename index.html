@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <title>Document</title>
+    <title>Mini Audio Player</title>
 </head>
 
 <body>
@@ -30,8 +30,8 @@
                     <input type="checkbox" hidden name="" class="header__menu-checkbox" id="menu-check">
                     <div class="header__categoryMusic">
                         <div class="vietnamese cat">Vietnamese</div>
-                        <div class="english cat">English</div>
-                        <div class="korea cat">Korea</div>
+                        <div class="english cat" >US-UK</div>
+                        <div class="korea cat" >Korea</div>
                         <div class="china cat">China</div>
                         <div class="love cat">Love</div>
                     </div>
@@ -47,9 +47,10 @@
             </div>
 
             <!-- CD -->
+            
             <div class="cd">
-                <div class="cd-thumb" style="background-image: url(./assets/img/cadilac3.jpg);">
-                </div>
+                <div class="cd-thumb" style="background-image: url(./assets/img/cadilac3.jpg);"></div>
+                <div id="cdProgress"></div>
             </div>
 
             <!-- Control -->
