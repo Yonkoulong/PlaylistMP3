@@ -51,6 +51,19 @@ body {
     display: none;
 }
 
+.dashboard::before {
+    content: "";
+    position: absolute;
+    border-top-right-radius: none;
+    border-top-left-radius: none;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: 22px;
+    width: 188px;
+    background-color: var(--text-notActive);
+    margin-left: -94px;
+}
+
 .dashboard {
     width: 100%;
 }
@@ -87,6 +100,20 @@ header {
     transform: translateX(100%);
     transition: transform linear 0.3s, opacity linear 0.3s;
     border: none;
+}
+
+.cat.active:first-child {
+    background-color: var(--text-color);
+    border-top-left-radius: 40px;
+}
+
+.cat.active {
+    background-color: var(--text-color);
+}
+
+.cat.active:last-child {
+    background-color: var(--text-color);
+    border-bottom-left-radius: 40px;
 }
 
 .header__menu-checkbox:checked ~ .header__categoryMusic {
@@ -171,19 +198,6 @@ header {
     right: 0;
     left: 0;
     top: 0;
-}
-
-#idProgress {
-    --space: -4px;
-    background-color: #24242424;
-    overflow: hidden;
-    left: var(--space);
-    top: var(--space);
-    right: var(--space);
-    bottom: var(--space);
-    position: absolute;
-    border-radius: 64px;
-    z-index: -2;
 }
 
 .control {

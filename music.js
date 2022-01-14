@@ -17,7 +17,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 const PLAYER_STORAGE_KEY = 'MUSIC_LIST'
-const CATEGORY_STORAGE_KEY = "MUSIC_CATEGORY"
+const LIST_STORAGE_KEY = "MUSIC_LOVE"
 
 const title = $('.title .title-name')
 const cd = $('.cd')
@@ -35,6 +35,11 @@ const curtime = $('#curtime')
 const durtime = $('#durtime')
 const volume = $('#volume')
 const song = $('.song')
+const vietnamese = $('.vietnamese')
+const english = $('.english')
+const korea = $('.korea')
+const china = $('.china')
+const love = $('.love')
 
 let newArray = []
 
@@ -46,66 +51,67 @@ const app = {
   isRandom: false,
   isRepeat: false,
   config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
+  configLove: JSON.parse(localStorage.getItem(LIST_STORAGE_KEY)) || {},
   songs: {
     vietnamese: [
       {
         name: 'Kẹo Bông Gòn',
         singer: 'H2K, TRUNKY',
-        path: 'https://zingmp3.vn/bai-hat/Keo-Bong-Gon-H2K-TRUNKY/ZWEW9WI8.html',
+        path: '/assets/music/vietnamese/Keo Bong Gon - H2k_ TRUNKY.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/d/e/9/1/de91f9c8b08e1fb4b35e2b64e1c2ed15.jpg'
       },
       {
         name: 'Váy Cưới (Lofi Version)',
         singer: 'Trung Tự, Rain, BFF',
-        path: 'https://zingmp3.vn/bai-hat/Vay-Cuoi-Lofi-Version-Trung-Tu-Rain-BFF/ZUC7EFIW.html',
+        path: '/assets/music/vietnamese/VayCuoi-TrungTu-4861460.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/d/f/d/c/dfdc847c99d1f7b549d01528188aa1ed.jpg'
       },
       {
         name: 'Yêu Là Cưới',
         singer: 'Phát Hồ, X2X',
-        path: 'https://zingmp3.vn/bai-hat/Yeu-La-Cuoi-Phat-Ho-X2X/ZU6IEI66.html',
+        path: '/assets/music/vietnamese/Yeu La Cuoi - Phat Ho.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/4/9/d/a/49da6a1d6cf13a42e77bc3a945d9dd6b.jpg'
       },
       {
         name: 'Màu Nước Mắt',
         singer: 'Nguyễn Trần Trung Quân',
-        path: 'https://zingmp3.vn/bai-hat/Mau-Nuoc-Mat-Nguyen-Tran-Trung-Quan/ZW9F08DB.html',
+        path: '/assets/music/vietnamese/Mau Nuoc Mat - Nguyen Tran Trung Quan.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/8/f/5/0/8f50e5afbf4daa6d062019bc36f3ab1a.jpg'
       },
       {
         name: 'Con Nợ Mẹ',
         singer: 'Trịnh Đình Quang',
-        path: 'https://zingmp3.vn/bai-hat/Con-No-Me-Trinh-Dinh-Quang/ZW6FIBAI.html',
+        path: '/assets/music/vietnamese/Con No Me - Trinh Dinh Quang.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/covers/6/2/62e328be3f61e35c88ab08b4ac8f888a_1418987645.jpg'
       },
       {
         name: '3 1 0 7',
         singer: 'Duongg - Nâu',
-        path: 'https://zingmp3.vn/bai-hat/3-1-0-7-Duongg-Nau/ZWAFWFI0.html',
+        path: '/assets/music/vietnamese/3 1 0 7 - W_n_ Duongg_ Nau.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/3/d/c/a/3dcae4d98f98fd4df205a66d240fb1f8.jpg'
       },
       {
         name: 'Ghé Qua',
         singer: 'Dick x Tofu x PC',
-        path: 'https://zingmp3.vn/bai-hat/Ghe-Qua-Dick-x-Tofu-x-PC/ZW8WCI9F.html',
+        path: '/assets/music/vietnamese/Ghe Qua - Dick_ Tofu_ PC.mp3',
         image: 'https://photo-zmp3.zadn.vn/audio_default.png'
       },
       {
         name: 'Về Với Anh Đi',
         singer: 'Andiez',
-        path: 'https://zingmp3.vn/bai-hat/Ve-Voi-Anh-Di-Andiez/ZW9DZBWF.html',
+        path: '/assets/music/vietnamese/Ve Voi Anh Di - Andiez.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/avatars/9/e/3/b/9e3bfb0a08a3d09e337957170905fd58.jpg'
       },
       {
         name: 'Lưu Số Em Đi',
         singer: 'Huỳnh Văn, Vũ Phụng Tiên',
-        path: 'https://zingmp3.vn/bai-hat/Luu-So-Em-Di-Huynh-Van-Vu-Phung-Tien/ZUCO7WW0.html',
+        path: '/assets/music/vietnamese/Luu So Em Di Dai Meo Remix_ - Huynh Van_.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/7/9/7/f/797fe66f5ed44a33e2ceca3fb63464c8.jpg'
       },
       {
         name: 'Cưa Là Đổ',
         singer: 'Phát Hồ, X2X',
-        path: 'https://zingmp3.vn/bai-hat/Cua-La-Do-Phat-Ho-X2X/ZU9WOC9E.html',
+        path: '/assets/music/vietnamese/Cua La Do - Phat Ho_ X2X.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/1/7/d/f/17df138d6b0c38c8a07ee502a49573cd.jpg'
       }
     ],
@@ -113,61 +119,61 @@ const app = {
       {
         name: 'Mood',
         singer: '24KGoldn, Lann Dior',
-        path: 'https://zingmp3.vn/bai-hat/Mood-24KGoldn-Iann-Dior/ZWBE8DU6.html',
+        path: '/assets/music/us-uk/Mood - 24kGoldn_ Iann Dior.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/0/2/b/2/02b29072eea90031aedeac7b157b3b4f.jpg'
       },
       {
         name: 'STAY',
         singer: 'The Kid LAROI, Justin Bieber',
-        path: 'https://zingmp3.vn/bai-hat/STAY-The-Kid-LAROI-Justin-Bieber/ZUWIB0AW.html',
+        path: '/assets/music/us-uk/Stay - The Kid LAROI_ Justin Bieber.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/7/6/7/c/767ce49eda227dd737bc17589362f86a.jpg'
       },
       {
         name: 'Cold Water',
         singer: 'Major Lazer, Justin Bieber',
-        path: 'https://zingmp3.vn/bai-hat/Cold-Water-Major-Lazer-Justin-Bieber-M/ZW7UE7IF.html',
+        path: '/assets/music/us-uk/Cold Water - Major Lazer_ MO_ Justin Bie.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/covers/9/a/9a7589d8753620fe49f7655f4d89e8cc_1469160584.jpg'
       },
       {
         name: 'Dusk Till Dawn',
         singer: 'ZAYN, Sia',
-        path: 'https://zingmp3.vn/bai-hat/Dusk-Till-Dawn-ZAYN-Sia/ZW8I78UO.html',
+        path: '/assets/music/us-uk/Dusk Till Dawn - Tyler And Ryan.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/5/1/3/3/5133e8c5b69122e5cf04d6bbddfac2d1.jpg'
       },
       {
         name: 'Uptown Funk',
         singer: 'Mark Ronson, Bruno Mars',
-        path: 'https://zingmp3.vn/bai-hat/Uptown-Funk-Mark-Ronson-Bruno-Mars/ZW6EA7O7.html',
+        path: '/assets/music/us-uk/Uptown Funk - Mark Ronson_ Bruno Mars.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/6/a/8/6/6a865fd1812a5285ce811260e5fbc27e.jpg'
       },
       {
-        name: 'Dancing With Your Ghost',
-        singer: 'Sasha Alex Sloan',
-        path: 'https://zingmp3.vn/bai-hat/Dancing-With-Your-Ghost-Sasha-Alex-Sloan/ZWADDU8B.html',
+        name: 'Talking To The Moon',
+        singer: 'Bruno Mars',
+        path: '/assets/music/us-uk/Talking To The Moon - Bruno Mars.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/7/f/e/8/7fe893caa5195af42378b63f46220bf2.jpg'
       },
       {
         name: 'Señorita',
         singer: 'Shawn Mendes, Camila Cabello',
-        path: 'https://zingmp3.vn/bai-hat/Senorita-Shawn-Mendes-Camila-Cabello/ZWAFDUW0.html',
+        path: '/assets/music/us-uk/Senorita - Shawn Mendes_ Camila Cabello.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/a/5/0/7/a50751f2b03c0b777db61121614cf079.jpg'
       },
       {
         name: 'Dance Monkey',
         singer: 'Maialen',
-        path: 'https://zingmp3.vn/bai-hat/Dance-Monkey-Maialen/ZU07FZDA.html',
+        path: '/assets/music/us-uk/Dance Monkey - Tones And I.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/7/c/1/5/7c15dcea365c7fc33f5f2f80ad3a02d3.jpg'
       },
       {
-        name: 'That Girl (CORSAK Remix)',
-        singer: 'Olly Murs, Liu Yu Ning, CORSAK',
-        path: 'https://zingmp3.vn/bai-hat/That-Girl-CORSAK-Remix-Olly-Murs-Liu-Yu-Ning-CORSAK/ZWAD8AA8.html',
+        name: 'That Girl',
+        singer: 'Olly Murs',
+        path: '/assets/music/us-uk/That Girl - Olly Murs.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/5/b/3/f/5b3f8d08259615e15c899e3080d6c6ef.jpg'
       },
       {
         name: 'SugarCrash!',
         singer: 'ElyOtto',
-        path: 'https://zingmp3.vn/bai-hat/SugarCrash-ElyOtto/ZOAOAO68.html',
+        path: '/assets/music/us-uk/SugarCrash_ - ElyOtto.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/d/8/b/1/d8b1cea5fdca3b4fb3d4d4b1bed6ddb9.jpg'
       }
     ],
@@ -175,61 +181,61 @@ const app = {
       {
         name: 'How you Like That',
         singer: 'BLACKPINK',
-        path: 'https://zingmp3.vn/bai-hat/How-You-Like-That-BLACKPINK/ZWBU778A.html',
+        path: '/assets/music/korean/How You Like That - BlackPink.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/f/1/1/1/f1113df32e09c1c5c6fe7069b0107c13.jpg'
       },
       {
         name: 'Kill This Love',
         singer: 'BLACKPINK',
-        path: 'https://zingmp3.vn/bai-hat/Kill-This-Love-BLACKPINK/ZWACDBZ6.html',
+        path: '/assets/music/korean/Kill This Love Live_ - BlackPink.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/9/d/9/2/9d92800be7aeeace4e73d1bf3696bf4d.jpg'
       },
       {
         name: 'DDU-DU DDU0-Du',
         singer: 'BLACKPINK',
-        path: 'https://zingmp3.vn/bai-hat/DDU-DU-DDU-DU-BLACKPINK/ZW9C9AZ0.html',
+        path: '/assets/music/korean/Ddu-Du Ddu-Du - BlackPink.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/d/0/2/9/d02919e0aa02332be290af46a90072b8.jpg'
       },
       {
         name: 'Really',
         singer: 'BLACKPINK',
-        path: 'https://zingmp3.vn/bai-hat/Really-BLACKPINK/ZW9C9AZU.html',
+        path: '/assets/music/korean/Really - BlackPink.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/5/1/3/3/5133e8c5b69122e5cf04d6bbddfac2d1.jpg'
       },
       {
         name: 'Winter Sleep',
         singer: 'IU',
-        path: 'https://zingmp3.vn/bai-hat/Winter-Sleep-IU/ZZ00WOBE.html',
+        path: '/assets/music/korean/Winter Sleep - IU.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/9/d/9/2/9d92800be7aeeace4e73d1bf3696bf4d.jpg'
       },
       {
-        name: 'BOOMBAYA',
-        singer: 'BLACKPINK',
-        path: 'https://zingmp3.vn/bai-hat/BOOMBAYAH-BLACKPINK/ZU060UBA.html',
+        name: 'Home',
+        singer: 'Janet Suhh',
+        path: '/assets/music/korean/Home - Janet Suhh.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/7/9/1/6/79162d1b6172ab702e7e64482094588b.jpg'
       },
       {
         name: 'ELEVEN',
         singer: 'IVE',
-        path: 'https://zingmp3.vn/bai-hat/ELEVEN-IVE/ZUDUFBOB.html',
-        image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/2/2/0/0/22009f0b42a8c2c33849c41697078eae.jpg'
+        path: '/assets/music/korean/Eleven - IVE.mp3',
+        image: 'https://data.chiasenhac.com/data/cover/153/152408.jpg'
       },
       {
         name: 'MONEY',
         singer: 'LISA',
-        path: 'https://zingmp3.vn/bai-hat/MONEY-LISA/ZU6ZE7FU.html',
+        path: '/assets/music/korean/Money - Lisa.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/0/5/b/1/05b109f713d48c0cea3423b8279897b7.jpg'
       },
       {
         name: 'On The Ground',
         singer: 'ROSÉ',
-        path: 'https://zingmp3.vn/bai-hat/On-The-Ground-ROSE/ZO9F7BEZ.html',
+        path: '/assets/music/korean/On The Ground - Rose.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/b/1/4/4/b144497aff69a4b8d16687c2bc30b224.jpg'
       },
       {
         name: 'Dynamite',
         singer: 'BTS',
-        path: 'https://zingmp3.vn/bai-hat/Dynamite-BTS/ZOEBBBEW.html',
+        path: '/assets/music/korean/Dynamite - BTS.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/9/0/2/e/902e2aa9ef582670091f1f2beda8a251.jpg'
       }
     ],
@@ -237,61 +243,61 @@ const app = {
       {
         name: 'Hỏi Gió (問風)',
         singer: 'Kim Ngư',
-        path: 'https://zingmp3.vn/bai-hat/Hoi-Gio-Kim-Ngu/ZZ0UO0U8.html',
+        path: '/assets/music/china/Hoi Gio - Kim Ngu.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/5/3/3/1/5331a4dfa9709535d1caa5a1db637635.jpg'
       },
       {
         name: 'Thiếu Niên / 少年',
         singer: 'Mộng Nhiên',
-        path: 'https://zingmp3.vn/bai-hat/Thieu-Nien-Mong-Nhien/ZWBOW0O6.html',
+        path: '/assets/music/china/Thieu Nien - Mong Nhien.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/9/d/9/2/9d92800be7aeeace4e73d1bf3696bf4d.jpg'
       },
       {
         name: 'Tớ Và Cậu / 我和你',
         singer: 'Pikachu Đa Đa',
-        path: 'https://zingmp3.vn/bai-hat/To-Va-Cau-Pikachu-Da-Da/ZWBOED9C.html',
+        path: '/assets/music/china/To Va Cau - Pikachu Da Da.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/1/7/5/a/175a7cd3ed590b585628b674a66a8f9a.jpg'
       },
       {
         name: 'Cặp Đôi Đẹp Nhất / 最美情侣',
         singer: 'Bạch Tiểu Bạch',
-        path: 'https://zingmp3.vn/bai-hat/Cap-Doi-Dep-Nhat-Bach-Tieu-Bach/ZW9D69WO.html',
+        path: '/assets/music/china/Cap Doi Dep Nhat - Bach Tieu Bach.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/7/3/4/4/7344132a6b743349e0c3c4ddf6c57c26.jpg'
       },
       {
-        name: 'Tớ Thích Cậu Nhường Nào, Cậu Sẽ Biết Thôi',
-        singer: 'Various Artists',
-        path: 'https://zingmp3.vn/bai-hat/To-Thich-Cau-Nhuong-Nao-Cau-Se-Biet-Thoi-Various-Artists/ZW8W7OFD.html',
+        name: 'Tớ Thích Cậu Nhường Nào, Cậu Sẽ Biết Thôi (我多喜歡你，你會知道)',
+        singer: 'Vương Tuấn Kỳ',
+        path: '/assets/music/china/To Thich Cau Nhuong Nao_ Cau Se Biet Tho.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/covers/0/1/019f2822202c0606fad5994d21e9e1e5_1511153650.jpg'
       },
       {
-        name: 'Mỗi Cô Gái Là Một Nàng Công Chúa',
+        name: 'Mỗi Cô Gái Là Một Nàng Công Chúa (每個女孩都是公主)',
         singer: '橘貓燒鯛魚',
-        path: 'https://zingmp3.vn/bai-hat/Moi-Co-Gai-La-Mot-Nang-Cong-Chua/ZUCUFIFZ.html',
+        path: '/assets/music/china/Moi Co Gai La Mot Nang Cong Chua - Quat.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/b/0/9/c/b09c101f10622d98cbf342f4ff70468e.jpg'
       },
       {
         name: 'Phi Tù / 非酋',
         singer: 'Tiết Minh VIện',
-        path: 'https://zingmp3.vn/bai-hat/Phi-Tu-tiet-minh-vien/ZW9EODFZ.html',
+        path: '/assets/music/china/Phi Tu - Tiet Minh Vien.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/b/c/f/f/bcff8bc98927543264362805bc463027.jpg'
       },
       {
         name: 'Có Chút Ngọt Ngào / 有点甜',
         singer: 'Uông Tô Lang, By2',
-        path: 'https://zingmp3.vn/bai-hat/Co-Chut-Ngot-Ngao-Uong-To-Lang-By2/ZW6I6FCD.html',
+        path: '/assets/music/china/Co Chut Ngot Ngao - Uong To Lang_ By2.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/covers/d/4/d4e810bb88ab518385039243ca32c977_1342784345.jpg'
       },
       {
         name: 'Your Smile',
         singer: 'Trần Ý Hàm',
-        path: 'https://zingmp3.vn/bai-hat/Your-Smile-Tran-Y-Ham/ZWEIUAWW.html',
+        path: '/assets/music/china/Your Smile - Tran Y Ham.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/6/a/9/8/6a989ab4e70a3ea3843371ed896acbed.jpg'
       },
       {
         name: 'Đáp Án Của Bạn / 你的答案',
         singer: 'A Nhũng ',
-        path: 'https://zingmp3.vn/bai-hat/Dap-An-Cua-Ban-A-Nhung/ZWB0OWIZ.html',
+        path: '/assets/music/china/Dap-An-Cua-Ban-A-Nhung.mp3',
         image: 'https://photo-resize-zmp3.zadn.vn/w94_r1x1_webp/cover/c/8/e/8/c8e8668fca2154da97499d83c658a677.jpg'
       }
     ],
@@ -300,13 +306,16 @@ const app = {
   setConfig: function(key, value) {
     this.config[key] = value
     localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config))
-
+  },
+  setConfigLove: function(arrayLove) {
+    this.configLove = arrayLove
+    localStorage.setItem(MUSIC_LOVE, JSON.stringify(this.configLove))
   },
   render: function () {
     const htmls = this.songs[this.currentList].map((song, index) => {  
       return `
-                <div class="song ${index === this.currenIndex ? 'active' : ''} data-index =${index}">
-                      <div class="thumb" style="background: url('${song.image}'); width: 40px; height: 45px;">
+                <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index=${index}>
+                      <div class="thumb" style="background-image: url('${song.image}'); width: 40px; height: 45px;">
                       </div>
                       <div class="body">
                           <h3 class="title-music">${song.name}</h3>
@@ -323,18 +332,18 @@ const app = {
   defineProperties: function () {
     Object.defineProperty(this, 'currentSong', {
       get: function () {
-        return this.songs[this.currentList][this.currenIndex]
+        return this.songs[this.currentList][this.currentIndex]
       }
     })
   },
-  // Xu ly cac su kien trong app nay
+  // handle the events in app
   handleEvents: function () {
     const _this = this
     const cdHeight = cd.offsetHeight
     const playlistHeight = playlist.offsetHeight
 
     //handle scroll playlist
-      playlist.onscroll = function () {
+    playlist.onscroll = function () {
       const scrollTop = playlist.scrollY || playlist.scrollTop
 
       const newCdHeight = cdHeight - scrollTop
@@ -343,8 +352,6 @@ const app = {
       cd.style.height = newCdHeight > 0 ? newCdHeight + 'px' : '0'
       playlist.style.height = newPlaylistHeight + 'px' 
       cd.style.opacity = newCdHeight / cdHeight
-    
-      
     }
 
     //handle CD turn / stop
@@ -355,6 +362,7 @@ const app = {
           iterations: Infinity,
     })
     cdThumbAnimate.pause()
+
     //handle when click play
     playBtn.onclick = function () { 
       if(_this.isPlaying) {
@@ -401,9 +409,10 @@ const app = {
       else {
         _this.nextSong()
       }
-      audio.play()
+      _this.setConfig('currentIndex', _this.currentIndex)
       _this.render()
       _this.scrollToActiveSong()
+      audio.play()
     }
 
     //When prev song
@@ -413,9 +422,10 @@ const app = {
       } else {
         _this.prevSong()
       }
-      audio.play()
+      _this.setConfig('currentIndex', _this.currentIndex)
       _this.render()
       _this.scrollToActiveSong()
+      audio.play()
     }
 
     //Handle on / off random song
@@ -469,21 +479,97 @@ const app = {
 
     //listen behavior when click on playlist
     playlist.onclick = function (e) {
-    const songNode = e.target.closest('.song:not(.active')
-      if (songNode || e.target.closest('.option')) {
+      const songNode = e.target.closest('.song:not(.active')
+      if(songNode || e.target.closest('.options')) {
         //handle when click on song  
         if (songNode) {
-          _this.currentIndex = Number(songNode.dataset.index)
+          _this.currentIndex = Number(songNode.dataset.index) //can use songNode.getAttribute.index to instead
+          _this.setConfig(_this.currentList, _this.currentIndex)
           _this.loadCurrentSong()
           _this.render()
           audio.play()
         }
 
         //handle when click on option
-        if (e.target.closest('.option')) {
+        if (e.tartget.closest('.option')) {
 
         }
       }
+    }
+
+    //handle change song list
+    vietnamese.onclick = function() {
+      vietnamese.classList.add('active');
+      english.classList.remove('active');
+      korea.classList.remove('active');
+      china.classList.remove('active');
+      love.classList.remove('active');
+
+      _this.currentList = 'vietnamese'
+      _this.currentIndex = 0
+      _this.loadCurrentSong()
+      _this.render()
+      audio.play()
+      playBtn.click()
+    }
+    english.onclick = function() {
+      vietnamese.classList.remove('active');
+      english.classList.add('active');
+      korea.classList.remove('active');
+      china.classList.remove('active');
+      love.classList.remove('active');
+
+      _this.currentList = 'english'
+      _this.currentIndex = 0
+      _this.loadCurrentSong()
+      _this.render()
+      audio.play()
+      playBtn.click()
+    }
+    korea.onclick = function () {
+      vietnamese.classList.remove('active');
+      english.classList.remove('active');
+      korea.classList.add('active');
+      china.classList.remove('active');
+      love.classList.remove('active');
+
+      _this.currentList = 'korea'
+      _this.currentIndex = 0
+      _this.loadCurrentSong()
+      _this.render()
+      audio.play()
+      playBtn.click()
+    }
+    china.onclick = function () {
+      vietnamese.classList.remove('active');
+      english.classList.remove('active');
+      korea.classList.remove('active');
+      china.classList.add('active');
+      love.classList.remove('active');
+
+      _this.currentList = 'china'
+      _this.currentIndex = 0
+      _this.loadCurrentSong()
+      _this.render()
+      audio.play()
+      playBtn.click()
+    }
+    love.onclick = function () {
+      if(_this.songs['love'].length === 0) {
+        alert('You have not add any song to Love List :(')
+      }
+
+      vietnamese.classList.remove('active');
+      english.classList.remove('active');
+      korea.classList.remove('active');
+      china.classList.remove('active');
+
+      _this.currentList = 'love'
+      _this.currentIndex = 0
+      _this.loadCurrentSong()
+      _this.render()
+      audio.play()
+      playBtn.click()
     }
   },
   
@@ -522,7 +608,7 @@ const app = {
   },
   scrollToActiveSong: function () {
     setTimeout(function () {
-      $('.song.active').scrollIntoView()
+      $('.song.active').scrollIntoView({behavior: 'smooth', block: "center"})
     }, 500)
   },
   start: function () {
