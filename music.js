@@ -45,8 +45,6 @@ const option = $('.option')
 const optionB = $('.option__bottom')
 const box = $('.box')
 
-console.log(addLove)
-
 let newArray = []
 
 const app = {
@@ -499,23 +497,25 @@ const app = {
 
         //handle when click on option
         if (e.target.closest('.option')) {
-          optionB.classList.add('active')
-          box.classList.add('active')
-
           if (_this.currentList === 'love') {
-              addLove.onclick = function () {
-                var indexTrace = Number(songAdd.dataset.index)
-                _this.songs['love'].splice(indexTrace, 1)
-                alert(`You have deleted song from favorites`)
-                _this.setConfigLove(_this.songs['love'])
-                _this.loadCurrentSong()
-                _this.render()
-                audio.play()
-                optionB.classList.remove('active')
-                box.classList.remove('active')
-              }
+            //delete song
+            optionB.classList.add('active')
+            box.classList.add('active')
+            addLove.onclick = function () {
+              var indexTrace = Number(songAdd.dataset.index)
+              _this.songs['love'].splice(indexTrace, 1)
+              _this.render()
+              _this.setConfigLove(_this.songs['love'])
+              showDeleteSuccess()
+
+              optionB.classList.remove('active')
+              box.classList.remove('active')
+            }
           } else {
-              addLove.onclick = function () {
+            //add song
+            optionB.classList.add('active')
+            box.classList.add('active')
+            addLove.onclick = function () {
               console.log(addLove)
               var indexTrace = Number(songAdd.dataset.index)
               console.log(indexTrace)
@@ -533,9 +533,9 @@ const app = {
               if (!_this.songs['love'].includes(newLove)) {
                 _this.songs['love'].push(newLove)
                 _this.setConfigLove(_this.songs['love'])
-                alert(`You have added ${newLove.name} in favorites`)
+                showAddLove()
               } else {
-                alert('This song is already in favorites ')
+                showAddedLove()
               }
               console.log(_this.songs[love])
               optionB.classList.remove('active')
@@ -610,39 +610,27 @@ const app = {
       playBtn.click()
     }
     love.onclick = function () {
-      if (_this.songs['love'].length === 0) {
-        alert('You have not add any song to Love List :(')
-      } else {
-        addLove.innerText = 'Remove song from favorites'
+        if (_this.songs['love'].length === 0) {
+          showLoveEmpty()
+        } else {
+          addLove.innerText = 'Remove song from favorites'
 
-        vietnamese.classList.remove('active');
-        english.classList.remove('active');
-        korea.classList.remove('active');
-        china.classList.remove('active');
-        love.classList.add('active');
+          vietnamese.classList.remove('active');
+          english.classList.remove('active');
+          korea.classList.remove('active');
+          china.classList.remove('active');
+          love.classList.add('active');
 
-        _this.currentList = 'love'
-        _this.currentIndex = 0
-        _this.loadCurrentSong()
-        _this.render()
-        audio.play()
-        playBtn.click()
-      }
-
-      vietnamese.classList.remove('active');
-      english.classList.remove('active');
-      korea.classList.remove('active');
-      china.classList.remove('active');
-
-      _this.currentList = 'love'
-      _this.currentIndex = 0
-      _this.loadCurrentSong()
-      _this.render()
-      audio.play()
-      playBtn.click()
+          _this.currentList = 'love'
+          _this.currentIndex = 0
+          _this.loadCurrentSong()
+          _this.render()
+          audio.play()
+          playBtn.click()
+        }
+      
     }
   },
-
   //Current Song
   loadCurrentSong: function () {
     title.textContent = this.songs[this.currentList][this.currentIndex].name
@@ -650,8 +638,28 @@ const app = {
     audio.src = this.songs[this.currentList][this.currentIndex].path
   },
   loadConfig: function () {
-    this.isRandom = this.config.isRandom
-    this.isRepeat = this.config.isRepeat
+    if (this.config.isRandom) {
+      this.isRandom = this.config.isRandom
+    } else {
+      this.isRandom = false
+    }
+    if (this.config.isRepeat) {
+      this.isRepeat = this.config.isRepeat
+    } else {
+      this.isRepeat = false
+    }
+    if (this.config.currentIndex) {
+      this.currentIndex = this.config.currentIndex
+    } else {
+      this.currentIndex = 0
+    }
+    if (this.configLove.length > 0) {
+      this.songs['love'] = this.songs['love'].concat(this.configLove)
+      console.log(this.songs['love'])
+    }
+    console.log(this.configLove.length)
+    this.render()
+
   },
   nextSong: function () {
     this.currentIndex++
@@ -682,7 +690,7 @@ const app = {
     }, 500)
   },
   start: function () {
-    localStorage.getItem(LIST_STORAGE_KEY) && this.songs.love.length === 0 ? this.songs.love = JSON.parse(localStorage.getItem(LIST_STORAGE_KEY)) : ''
+    // localStorage.getItem(LIST_STORAGE_KEY) && this.songs.love.length === 0 ? this.songs.love = JSON.parse(localStorage.getItem(LIST_STORAGE_KEY)) : ''
 
     //assgin config from config in app
     this.loadConfig();
@@ -707,3 +715,78 @@ const app = {
 
 app.start()
 
+
+
+function notify({
+  title = '',
+  message = '',
+  type = 'info',
+  duration = 3000
+}) {
+  const main = document.getElementById('notify')
+  if (main) {
+    const notify = document.createElement('div')
+
+    //auto Remove Notify
+    setTimeout(() => {
+      main.removeChild(notify)
+    }, duration)
+
+    const icons = {
+      success: 'fas fa-check-circle',
+      error: 'fas fa-exclamation-circle',
+      warning: 'fas fa-exclamation-circle',
+    }
+    const icon = icons[type]
+    const delay = (duration / 1000).toFixed(2)
+
+    notify.classList.add('notify', `notify--${type}`)
+    notify.style.animation = `slideInTop ease .3s, fadeOut linear 1s ${delay}s forwards`;
+    notify.innerHTML = `
+         <div class="notify__icon">
+             <i class="${icon}"></i>
+         </div>
+         <div class="notify__body">
+             <h3 class="notify__title">${title}</h3>
+             <p class="notify__msg">${message}</p>
+         </div>
+    `
+    main.appendChild(notify)
+  }
+}
+
+function showAddedLove() {
+  notify({
+    title: 'Mini Audio',
+    message: 'This song is already in favorites',
+    type: 'warning',
+    duaration: 3000
+  });
+}
+
+function showAddLove() {
+  notify({
+    title: 'Mini Audio',
+    message: 'You have added song in favorites',
+    type: 'success',
+    duaration: 3000
+  });
+}
+
+function showLoveEmpty() {
+  notify({
+    title: 'Mini Audio',
+    message: 'You have not add any song in favorites',
+    type: 'error',
+    duaration: 3000
+  });
+}
+
+function showDeleteSuccess() {
+  notify({
+    title: 'Mini Audio',
+    message: 'You have deleted song from favorites',
+    type: 'success',
+    duaration: 3000
+  });
+}
